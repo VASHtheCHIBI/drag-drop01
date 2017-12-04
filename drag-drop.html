@@ -1,52 +1,8 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<style>
-			#box1, #box2, #box3, #box4 {
-				float: left;
-				height: 200px;
-				width: 195.27px;
-				margin: 10px;
-				padding: 10px;
-				border: 1px solid black;
-			}
-
-			/* Create two equal columns that floats next to each other */
-			.column {
-				float: left;
-				width: 50%;
-			}
-
-			/* Clear floats after the columns */
-			.row {
-				margin: auto;
-			}
-			
-			.row:after {
-				content: "";
-				display: table;
-				clear: both;
-			}
-
-		</style>
-		<script>
-			function allowDrop(ev) {
-					ev.preventDefault();
-					ev.dataTransfer.dropEffect = "move";
-			}
-			
-			function drag(ev) {
-					ev.dataTransfer.setData("text", ev.target.id);
-					ev.dataTransfer.effectAllowed = "move";
-			}
-			
-			function drop(ev) {
-					ev.preventDefault();
-					var data = ev.dataTransfer.getData("text");
-					ev.target.appendChild(document.getElementById(data));
-			}
-					
-		</script>
+		<link rel="stylesheet" href="./drag-drop.css" />
+		<script src="./drag-drop.js"></script>
 	</head>
 	<body>
 		<h2><center>Drag and drop the image into one of the other boxes.<br>
@@ -57,26 +13,26 @@
 		<div class="row">
 				<div class="column">
 					<div class="row">
-						<div id="box1" ondrop="drop(event);" ondragover="allowDrop(event);">
-							<img src="trigun.jpg" draggable="true" ondragstart="drag(event);" id="drag1" width="195.27" height="200">
+						<div id="box1">
+							<img src="trigun.jpg" draggable="true" ondragstart="DnD.drag(event);" id="drag1" width="195.27" height="200" data-drag-fixed="true">
 						</div>
 					</div>
 
 					<div class="row">
-						<img src="trashcan.png" draggable="false" width="120" height="150" ondrop="drop(event)" ondragover="allowDrop(event)">
+						<img src="trashcan.png" draggable="false" width="120" height="150" ondrop="DnD.drop(event);" ondragover="DnD.allowDrop(event);">
 					</div>
 				</div>
 
 				<div class="column">
 					<div class="row">
-						<div id="box2" ondrop="drop(event);" ondragover="allowDrop(event);"></div>
+						<div id="box2" ondrop="DnD.drop(event);" ondragover="DnD.allowDrop(event);"></div>
 					</div>
 					<div class="row">
-						<div id="box3" ondrop="drop(event);" ondragover="allowDrop(event);"></div>
+						<div id="box3" ondrop="DnD.drop(event);" ondragover="DnD.allowDrop(event);"></div>
 					</div>
 
 					<div class="row">
-						<div id="box4" ondrop="drop(event);" ondragover="allowDrop(event);"></div>
+						<div id="box4" ondrop="DnD.drop(event);" ondragover="DnD.allowDrop(event);"></div>
 					</div>
 				</div>
 		</div>
